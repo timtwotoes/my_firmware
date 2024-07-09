@@ -47,9 +47,9 @@ combo_t key_combos[COMBO_COUNT] = {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(1,KC_DELETE):
-            return TAPPING_TERM -50;
+            return TAPPING_TERM -90;
         case LT(2,KC_BSPC):
-            return TAPPING_TERM -50;
+            return TAPPING_TERM -90;
         default:
             return TAPPING_TERM;
     }
