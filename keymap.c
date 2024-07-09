@@ -3,6 +3,7 @@
 #include "i18n.h"
 #include "features/achordion.h"
 #define MOON_LED_LEVEL LED_LEVEL
+#define ML_SAFE_RANGE SAFE_RANGE
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
@@ -43,6 +44,16 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_ESCAPE),
 };
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(1,KC_DELETE):
+            return TAPPING_TERM -50;
+        case LT(2,KC_BSPC):
+            return TAPPING_TERM -50;
+        default:
+            return TAPPING_TERM;
+    }
+}
 
 extern rgb_config_t rgb_matrix_config;
 
@@ -102,6 +113,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
 
   switch (keycode) {
+
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
